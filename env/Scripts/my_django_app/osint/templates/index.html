@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>OSINT Report Generator</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+      /* td{
+        border: 1px solid #222;
+      } */
+      table {
+       border-collapse: collapse;
+      }
+      td {
+       border: 1px solid #222;
+       padding: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>OSINT Report Generator</h1>
+      <form id="generate-report-form" class="form-container" method="post">
+        <label for="url">Enter URL to Generate Report:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Generate Report</button>
+      </form>
+      <div id="loader-container" class="loader-container">
+        <div id="loader" class="loader"></div>
+      </div>
+      <table id="report-table">
+        {% if url %}
+        <tr>
+          <td>Url</td>
+          <td>{{url}}</td>
+        </tr>
+        <tr>
+          <td>VT report</td>
+          <td>{{vt_report}}</td>
+        </tr>
+        <tr>
+          <td>DNS Report</td>
+          <td>{{dns_report}}</td>
+        </tr>
+        <tr>
+          <td>Geopy Report</td>
+          <td>{{geopy_report}}</td>
+        </tr>
+        <tr>
+          <td>Whois Lookup</td>
+          <td>{{whois_report}}</td>
+        </tr>
+        <tr>
+          <td>UUID analysis</td>
+          <td>{{uuid_analysis}}</td>
+        </tr>
+        {% endif %}
+      </table>
+    </div>
+   
+  </body>
+</html>
